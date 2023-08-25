@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Новый читатель</title>
+</head>
+<body>
+<h1>Добавить читателя</h1>
+<hr>
+<form method="POST" action="/readers" th:object="${reader}">
+  <label>
+    ФИО
+    <input type="text" th:field="*{fullName}">
+  </label>
+  <div style="color:red" th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}">Error name</div>
+  <br>
+  <br>
+  <label>
+    Возраст
+    <input type="text" th:field="*{age}">
+  </label>
+  <div style="color:red" th:if ="${#fields.hasErrors('age')}" th:errors="*{age}">Age error</div>
+  <hr>
+  <input type="submit" value="Добавить">
+</form>
+<br>
+<form method="GET" action="/readers">
+  <input type="submit" value="Назад">
+</form>
+</body>
+</html>

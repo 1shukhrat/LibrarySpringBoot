@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Книги</title>
+</head>
+<body>
+<h1>Список книг</h1>
+<form method="GET" action="/books/search" th:object="${bookSearch}">
+    <input type="search" th:field="*{title}">
+    <input type="submit" value="Поиск">
+</form>
+<hr>
+<h3 th:if="${bookList.isEmpty()}">Пусто</h3>
+<div th:unless="${bookList.isEmpty()}">
+    <form method="GET" action="/books">
+        <input type="hidden" name="sort_by_year" value="true">
+        <input type="submit" value="Отсоритровать по году издания">
+    </form>
+    <ul th:each="book : ${bookList}">
+        <li ><a th:href="@{/books/{id}(id = ${book.id})}"> <span th:text="${book.title}"></span>, <span th:text="${book.author}"></span></a></li>
+    </ul>
+</div>
+
+<hr>
+<form method="GET" action="/books/new">
+    <input type="submit" value="Добавить">
+</form>
+<br>
+<form method="GET" action="/library">
+    <input type="submit" value="Назад">
+</form>
+</body>
+</html>

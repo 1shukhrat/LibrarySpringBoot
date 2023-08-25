@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title th:text = "${book.title}">Имя</title>
+</head>
+<body>
+<h2 th:text="${book.title}">Имя</h2>
+<h4>Автор: <span th:text="${book.author}">Автор</span></h4>
+<h4>Год издания: <span th:text="${book.year}">Год</span></h4>
+<hr>
+<div th:if = "${owner}">
+    <p> Читатель: <span th:text="${owner.fullName}"></span></p>
+    <form th:method="PATCH" th:action="@{/books/{id}/release(id = ${book.id})}">
+        <input type="submit" value="Освободить">
+    </form>
+</div>
+<div th:if="${readerList}">
+    <form th:method="PATCH" th:action="@{/books/{id}/appoint(id = ${book.id})}">
+        <select th:object="${reader}" >
+            <option th:each="reader : ${readerList}" th:value="${reader}" th:text="${reader.fullName}"></option>
+        </select>
+        <input type="submit" value="Назначить">
+    </form>
+</div>
+<hr>
+<form method="GET" th:action="@{/books/{id}/edit(id = ${book.id})}">
+  <input type="submit" value="Изменить">
+</form>
+<br>
+<form th:method="DELETE" th:action="@{/books/{id}(id = ${book.id})}">
+  <input type="submit" value="Удалить">
+</form>
+<br>
+<form method="GET" action="/books">
+  <input type="submit" value="Назад">
+</form>
+</body>
+</html>

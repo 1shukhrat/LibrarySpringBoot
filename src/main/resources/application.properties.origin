@@ -1,0 +1,13 @@
+#Hibernate
+spring.jpa.properties.hibernate.dialect=
+spring.jpa.properties.hibernate.show_sql=
+spring.jpa.properties.hibernate.formal_sql=
+
+#Data Source
+spring.datasource.driver-class-name=
+spring.datasource.url=
+spring.datasource.username=
+spring.datasource.password=
+
+#Spring MVC
+spring.mvc.hiddenmethod.filter.enabled=true

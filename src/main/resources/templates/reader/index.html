@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Читатели</title>
+</head>
+<body>
+<h1>Список читателей</h1>
+<form method="GET" action="/readers/search" th:object="${readerSearch}">
+    <input type="search" th:field="*{fullName}">
+    <input type="submit" value="Поиск">
+</form>
+<hr>
+<h3 th:if="${readerList.isEmpty()}">Пусто</h3>
+<ul th:each="reader : ${readerList}">
+    <li><a th:href="@{/readers/{id}(id = ${reader.id})}" th:text="${reader.fullName}">Reader</a></li>
+</ul>
+<hr>
+<form method="GET" action="/readers/new">
+    <input type="submit" value="Добавить">
+</form>
+<br>
+<form method="GET" action="/library">
+    <input type="submit" value="Назад">
+</form>
+</body>
+</html>

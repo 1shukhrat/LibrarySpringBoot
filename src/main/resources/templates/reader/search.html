@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Результаты поиска</title>
+</head>
+<body>
+<h1>Результаты поиска по запросу : <span th:text="${readerSearch.fullName}">name</span> </h1>
+<hr>
+<h3 th:if="${readerList.isEmpty()}">Ничего не найдено</h3>
+<ul th:each=" reader : ${readerList}">
+    <li><a th:href="@{/readers/{id}(id = ${reader.id})}" th:text="${reader.fullName}">Reader</a></li>
+</ul>
+<br>
+<form method="GET" action="/readers">
+    <input type="submit" value="Назад">
+</form>
+</body>
+</html>

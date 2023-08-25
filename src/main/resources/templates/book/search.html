@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>Результаты поиска</title>
+</head>
+<body>
+<h1>Результаты поиска по запросу : <span th:text="${bookSearch.title}">name</span> </h1>
+<hr>
+<h3 th:if="${bookList.isEmpty()}">Ничего не найдено</h3>
+<ul th:each=" book : ${bookList}">
+  <li><a th:href="@{/books/{id}(id = ${book.id})}"> <span th:text="${book.title}"></span>, <span th:text="${book.author}"></span></a>
+    <span th:if="${book.getReader() != null}"> На чтении у:
+      <a th:href="@{/readers/{id}(id = ${book.reader.id})}" th:text="${book.reader.fullName}">Name</a></span></li>
+</ul>
+<br>
+<form method="GET" action="/books">
+  <input type="submit" value="Назад">
+</form>
+</body>
+</html>

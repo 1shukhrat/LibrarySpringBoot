@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title th:text = "${reader.fullName}">Имя</title>
+</head>
+<body>
+<h2 th:text="${reader.fullName}">Имя</h2>
+<h4>Возраст: <span th:text="${reader.age}">Возраст</span></h4>
+<hr>
+<p> <b>Книги:</b></p>
+<p th:if="${bookList.isEmpty()}">Пусто</p>
+<ul th:each="book : ${bookList}">
+    <li th:style="${book.isExpired() == true ?'color:red':'color:black'}"><span th:text="${book.title}"></span>,
+        <span th:text="${book.author}"></span></li>
+</ul>
+<hr>
+<form method="GET" th:action="@{/readers/{id}/edit(id = ${reader.id})}">
+  <input type="submit" value="Изменить">
+</form>
+<br>
+<form th:method="DELETE" th:action="@{/readers/{id}(id = ${reader.id})}">
+  <input type="submit" value="Удалить">
+</form>
+<br>
+<form method="GET" action="/readers">
+  <input type="submit" value="Назад">
+</form>
+</body>
+</html>
